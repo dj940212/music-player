@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Tab from '@/components/tab/tab'
+import Recommend from '@/components/recommend/recommend'
 // import App from '@/App'
 
 Vue.use(Router)
@@ -9,5 +9,8 @@ export default new Router({
   routes: [{
     path: '/',
     redirect: '/recommend'
+  }, {
+    path: '/recommend',
+    component: Recommend
   }]
 })
