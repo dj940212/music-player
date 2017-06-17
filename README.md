@@ -1,6 +1,6 @@
 # vue-music
 
->   vue 音乐播放器
+>   一个音乐播放器
 
 ## Build Setup
 
