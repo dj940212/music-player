@@ -9,8 +9,8 @@ import 'common/stylus/index.styl'
 
 fastclick.attach(document.body)
 
-Vue.use(VueLazyLoad,{
-    loading: require('common/image/default.png')
+Vue.use(VueLazyLoad, {
+  loading: require('common/image/default.png')
 })
 
 Vue.config.productionTip = false

@@ -36,3 +36,8 @@ Vue.use(VueLazyLoad,{
     loading: require('common/image/default.png')
 })
 ```
+
+```html
+*.vue
+<img v-lazy="item.imgurl">
+```
