@@ -6,7 +6,7 @@
                 <slider>
                     <div v-for="item in recommends">
                         <a :href="item.linkUrl">
-                            <img :src="item.picUrl"/>
+                            <img class="needsclick" :src="item.picUrl"/>
                         </a>
                     </div>
                 </slider>
@@ -24,6 +24,9 @@
               </ul>
             </div>
           </div>
+          <div class="loading-container" v-show="!discList.length">
+            <loading></loading>
+          </div>
         </scroll>
     </div>
 </template>
@@ -38,6 +41,7 @@ import {
 } from 'api/config'
 import Slider from 'src/base/slider/slider'
 import Scroll from 'src/base/scroll/scroll'
+import Loading from 'src/base/loading/loading'
 export default {
   created() {
     this._getRecommend()
@@ -53,7 +57,7 @@ export default {
     _getRecommend() {
       getRecommend().then((res) => {
         if (res.code === ERR_OK) {
-          console.log(res.data.slider)
+          console.log("推荐",res.data.slider)
           this.recommends = res.data.slider
         }
       })
@@ -61,7 +65,7 @@ export default {
     _getDiscList() {
       getDiscList().then((res) => {
         if (res.code === ERR_OK) {
-          console.log(res.data.list)
+          console.log("歌单",res.data.list)
           this.discList = res.data.list
         }
       })
@@ -69,7 +73,8 @@ export default {
   },
   components: {
     Slider,
-    Scroll
+    Scroll,
+    Loading
   }
 }
 </script>
