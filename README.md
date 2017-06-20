@@ -1,21 +1,38 @@
 # vue-music
 
->   一个音乐播放器------
+>   一个音乐播放器
 
-## Build Setup
+## 运行项目
 
 ``` bash
-# install dependencies
+# 安装项目依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 在localhost:8080 运行
 npm run dev
 
-# build for production with minification
+# 构建
 npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## 项目依赖
+
++ `fastclick` 消除移动浏览器发生轻敲和点击之间的300毫秒延迟
+```javascript
+main.js
+import fastclick from fastclick
+fastclick.attach(document.body);
+```
+
++ `vue-lazyload` vue图片懒加载组件
+```javascript
+main.js
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{
+    loading: require('common/image/default.png')
+})
+```
