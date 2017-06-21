@@ -1,13 +1,14 @@
 <template>
-<div class="singer" ref="singer">
-
-</div>
+  <div class="singer" ref="singer">
+    <ListView :data="singers"></ListView>
+  </div>
 </template>
 
 <script>
 import { getSingerList } from 'src/api/singer'
 import { ERR_OK } from 'api/config'
 import Singer from 'common/js/singer'
+import ListView from 'src/base/listview/listview'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 
@@ -72,8 +73,9 @@ export default {
         })
         return hot.concat(ret)
     }
-
   },
-  components: {}
+  components: {
+    ListView
+  }
 }
 </script>
