@@ -41,3 +41,5 @@ Vue.use(VueLazyLoad,{
 *.vue
 <img v-lazy="item.imgurl">
 ```
+
++ `better-scroll` 实现滚动列表，轮播图

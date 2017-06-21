@@ -32,13 +32,8 @@
 </template>
 
 <script>
-import {
-  getRecommend,
-  getDiscList
-} from 'api/recommend'
-import {
-  ERR_OK
-} from 'api/config'
+import {getRecommend, getDiscList } from 'api/recommend'
+import {ERR_OK } from 'api/config'
 import Slider from 'src/base/slider/slider'
 import Scroll from 'src/base/scroll/scroll'
 import Loading from 'src/base/loading/loading'
