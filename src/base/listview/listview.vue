@@ -11,7 +11,7 @@
         </ul>
       </li>
     </ul>
-    <div class="list-shortcut" @touchstart="onShortCutTouchStart">
+    <div class="list-shortcut" @touchstart="onShortCutTouchStart" @touchmove.stop.prevent="onShortCutTouchMove">
       <ul>
         <li class="item" v-for="(item, index) in shortcutList" :data-index="index">{{item}}</li>
       </ul>
@@ -22,6 +22,9 @@
 <script>
   import Scroll from 'src/base/scroll/scroll'
   import {getData} from 'src/common/js/dom'
+
+  const ANCHOR_HEIGHT = 18
+
   export default {
     props: {
       data: {
@@ -53,29 +56,23 @@
     methods: {
       onShortCutTouchStart(e) {
         let anchorIndex = getData(e.target, 'index')
-        // let firstTouch = e.touches[0]
-        // this.touch.y1 = firstTouch.pageY
-        // this.touch.anchorIndex = anchorIndex
+        let firstTouch = e.touches[0]
+        this.touch.y1 = firstTouch.pageY
+        this.touch.anchorIndex = anchorIndex
 
-        this.$refs.listview.scrollToElement(this.$refs.listGroup[anchorIndex],0)
-
-        // this._scrollTo(anchorIndex)
-        console.log(anchorIndex)
+        this._scrollTo(anchorIndex)
         console.log(this.$refs.listGroup[anchorIndex])
       },
+      onShortCutTouchMove(e) {
+        let firstTouch = e.touches[0]
+        this.touch.y2 = firstTouch.pageY
+        let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+        let anchorIndex = parseInt(this.touch.anchorIndex) + delta
+
+        this._scrollTo(anchorIndex)
+      },
       _scrollTo(index) {
-        console.log(this.listHeight.length)
-        if (!index && index !== 0) {
-          return
-        }
-        if (index < 0) {
-          index = 0
-        }else if (index > this.listHeight.length - 2) {
-          index = this.listHeight.length - 2
-        }
-        this.scrollY = -this.listHeight[index]
         this.$refs.listview.scrollToElement(this.$refs.listGroup[index],0)
-        console.log(this.$refs.listGroup[index])
       },
       _calculateHeight() {
         this.listHeight = []
