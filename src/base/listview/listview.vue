@@ -123,7 +123,7 @@
         }
         this.scrollY = -this.listHeight[index]
         console.log(this.$refs.listview)
-        this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
+        this.$refs.listview.scrollToElement(this.$refs.listGroup[index],0)
       }
     },
     watch: {
