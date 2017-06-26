@@ -53,12 +53,15 @@
     methods: {
       onShortCutTouchStart(e) {
         let anchorIndex = getData(e.target, 'index')
-        let firstTouch = e.touches[0]
-        this.touch.y1 = firstTouch.pageY
-        this.touch.anchorIndex = anchorIndex
+        // let firstTouch = e.touches[0]
+        // this.touch.y1 = firstTouch.pageY
+        // this.touch.anchorIndex = anchorIndex
 
-        this._scrollTo(anchorIndex)
+        this.$refs.listview.scrollToElement(this.$refs.listGroup[anchorIndex],0)
+
+        // this._scrollTo(anchorIndex)
         console.log(anchorIndex)
+        console.log(this.$refs.listGroup[anchorIndex])
       },
       _scrollTo(index) {
         console.log(this.listHeight.length)
@@ -92,7 +95,27 @@
           console.log("data变化")
           this._calculateHeight()
         }, 20)
-      }
+      },
+      // scrollY(newY){
+      //   const listHeight = this.listHeight
+      //   // 当滚动到顶部，newY>0
+      //   if (newY) {
+      //     this.currentIndex = 0
+      //     return
+      //   }
+      //   // 在中间部分滚动
+      //   for (let i = 0; i < listHeight.length; i++) {
+      //     let height1 = listHeight[i]
+      //     let height2 = listHeight[i + 1]
+      //     if (-newY >= height1 && -newY < height2) {
+      //       this.currentIndex = i
+      //       this.diff =height2 + newY
+      //       return
+      //     }
+      //   }
+      //   // 当滚动到底部，且-newY大于最后一个元素的上限
+      //   this.currentIndex = listHeight.length - 2
+      // }
     }
   }
 </script>
@@ -128,7 +151,7 @@
           color: $color-text-l
           font-size: $font-size-medium
     .list-shortcut
-      position: fixed
+      position: absolute
       z-index: 30
       right: 0
       top: 50%
