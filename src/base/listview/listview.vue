@@ -75,6 +75,7 @@
       this.listHeight = []
     },
     methods: {
+      //选中一个歌手
       selectItem(item) {
         this.$emit('select', item)
       },

@@ -24,12 +24,14 @@ export default {
     this._getSingerList()
   },
   methods: {
+    //跳转到歌手详情页
     selectSinger(singer) {
       this.$router.push({
         path: `/singer/${singer.id}`
       })
       this.setSinger(singer)
     },
+    //获取歌手列表数据
     _getSingerList() {
       getSingerList().then((res) => {
         if (res.code === ERR_OK) {
@@ -38,6 +40,7 @@ export default {
         }
       })
     },
+    //格式化歌手列表数据
     _normalizeSinger(list) {
         let map = {
             hot: {
