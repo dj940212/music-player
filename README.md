@@ -2,6 +2,8 @@
 
 >   移动端音乐播放器
 
+预览：http://huxiaofei/vue-music
+
 ## 运行项目
 
 ``` bash
