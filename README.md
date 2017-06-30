@@ -2,7 +2,7 @@
 
 >   移动端音乐播放器
 
-预览：http://huxiaofei/vue-music
+预览：http://huxiaofei.me/vue-music
 
 ## 运行项目
 
