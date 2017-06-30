@@ -87,8 +87,16 @@
       scrollY(newY){
         let translateY = Math.max(this.minTranslateY,newY) 
         let zIndex = 0
-        this.$refs.layer.style['transform'] = `translate3d(0, ${translateY}px,0)`
-        this.$refs.layer.style['webkitTransform'] = `translate3d(0, ${translateY}px,0)`
+        let scale = 1
+        const percent = Math.abs(newY / this.imageHeight)
+        if (newY > 0) {
+          scale = 1 + percent
+          zIndex = 10
+        } else {
+          blur = Math.min(20, percent * 20)
+        }
+        this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
+        this.$refs.filter.style[backdrop] = `blur(${blur}px)`
         if (newY > 0) {}
         if (newY < this.minTranslateY) {
           zIndex = 10
@@ -101,6 +109,7 @@
           this.$refs.playBtn.style.display = ''
         }
         this.$refs.bgImage.style.zIndex = zIndex
+        this.$refs.bgImage.style[transform] = `scale(${scale})`
       }
     }
   }
