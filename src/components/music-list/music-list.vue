@@ -6,7 +6,7 @@
     <h1 class="title" v-html="title"></h1>
     <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="play-wrapper">
-        <div ref="playBtn"  class="play">
+        <div ref="playBtn"  class="play" v-show="songs.length > 0">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
         </div>
@@ -30,8 +30,12 @@
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
   import SongList from 'base/song-list/song-list'
+  import {prefixStyle} from 'common/js/dom'
 
   const RESERVED_HEIGHT = 40
+  const transform = prefixStyle('transform')
+  const backdrop = prefixStyle('backdrop-filter')
+
   export default{
     props:{
       bgImage: {
@@ -85,6 +89,7 @@
         let zIndex = 0
         this.$refs.layer.style['transform'] = `translate3d(0, ${translateY}px,0)`
         this.$refs.layer.style['webkitTransform'] = `translate3d(0, ${translateY}px,0)`
+        if (newY > 0) {}
         if (newY < this.minTranslateY) {
           zIndex = 10
           this.$refs.bgImage.style.paddingTop = 0
