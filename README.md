@@ -45,3 +45,5 @@ Vue.use(VueLazyLoad,{
 ```
 
 + `better-scroll` 实现滚动列表，轮播图
+
++ `create-keyframe-animation` 帧动画库

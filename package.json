@@ -17,8 +17,9 @@
     "vue": "^2.3.3",
     "vuex": "^2.3.1",
     "vue-router": "^2.3.1",
-    "better-scroll":"^0.1.15",
-    "vue-lazyload":"^1.0.3"
+    "better-scroll": "^0.1.15",
+    "vue-lazyload": "^1.0.3",
+    "create-keyframe-animation": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
