@@ -27,13 +27,13 @@
               <i class="icon-sequence"></i>
             </div>
             <div class="icon i-left">
-              <i class="icon-prev"></i>
+              <i class="icon-prev" @click="prev"></i>
             </div>
             <div class="icon i-center">
               <i :class="playIcon" @click="togglePlaying"></i>
             </div>
             <div class="icon i-right">
-              <i class="icon-next"></i>
+              <i class="icon-next" @click="next"></i>
             </div>
             <div class="icon i-right">
               <i  class="icon icon-not-favorite"></i>
@@ -59,7 +59,7 @@
         </div>
       </div>
     </transition>
-    <audio :src="currentSong.url" ref="audio"></audio>
+    <audio :src="currentSong.url" ref="audio" @canplay="ready" @error="error"></audio>
   </div>
 </template>
 
@@ -76,7 +76,8 @@
         'fullScreen',
         'playlist',
         'currentSong',
-        'playing'
+        'playing',
+        'currentIndex'
       ]),
       playIcon() {
         return this.playing ? 'icon-pause' : 'icon-play'
@@ -86,6 +87,11 @@
       },
       cdCls() {
         return this.playing ? 'play' : 'play pause'
+      }
+    },
+    data() {
+      return {
+        songReady: false
       }
     },
     methods:{
@@ -152,11 +158,51 @@
         }
       },
       togglePlaying() {
+        if (!this.songReady) {
+          return
+        }
+        this.songReady = false
         this.setPlayingState(!this.playing)
+      },
+      next() {
+        if (!this.songReady) {
+          return
+        }
+        this.songReady = false
+        let index = this.currentIndex + 1
+        if (index === this.playlist.length) {
+          index = 0
+        }
+        this.setCurrentIndex(index)
+        if (!this.playing) {
+          this.togglePlaying()
+        }
+      },
+      prev() {
+        if (!this.songReady) {
+          return
+        }
+        this.songReady = false
+        let index = this.currentIndex - 1
+        if (index === -1) {
+          index = this.playlist.length - 1
+        }
+        this.setCurrentIndex(index)
+        if (!this.playing) {
+          this.togglePlaying()
+        }
+      },
+      //解决快速切换歌曲报错
+      ready() {
+        this.songReady = true
+      },
+      error(){
+        console.log("...")
       },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
-        setPlayingState: 'SET_PLAYING_STATE'
+        setPlayingState: 'SET_PLAYING_STATE',
+        setCurrentIndex: 'SET_CURRENT_INDEX'
       })
     },
     watch: {
