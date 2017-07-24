@@ -51,6 +51,7 @@
           <div class="progress-wrapper">
             <span class="time time-l">{{format(currentTime)}}</span>
             <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar>
             </div>
             <span class="time time-r">{{format(currentSong.duration)}}</span>
           </div>
@@ -99,7 +100,7 @@
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
-  // import ProgressBar from 'base/progress-bar/progress-bar'
+  import ProgressBar from 'base/progress-bar/progress-bar'
   // import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   // import {shuffle} from 'common/js/util'
@@ -440,7 +441,7 @@
       }
     },
     components: {
-      // ProgressBar,
+      ProgressBar,
       // ProgressCircle,
       Scroll
     }
