@@ -3,6 +3,7 @@
 >   移动端音乐播放器
 
 预览：http://huxiaofei.me/vue-music
+![](http://oupfkjs5r.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170815104100.jpg)
 
 ## 运行项目
 
