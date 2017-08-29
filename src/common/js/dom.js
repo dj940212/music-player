@@ -21,9 +21,6 @@ export function getData(el, name, val) {
   return el.getAttribute(prefix + name)
 }
 
-
-
-
 let elementStyle = document.createElement('div').style
 
 let vendor = (() => {

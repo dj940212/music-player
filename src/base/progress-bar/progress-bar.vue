@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import {prefixStyle} from 'common/js/dom'
 
   const progressBtnWidth = 16

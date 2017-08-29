@@ -1,97 +1,101 @@
 <template>
   <div class="singer" ref="singer">
-    <ListView :data="singers" ref="list" @select="selectSinger"></ListView>
+    <list-view @select="selectSinger" :data="singers" ref="list"></list-view>
     <router-view></router-view>
   </div>
 </template>
 
-<script>
-import { getSingerList } from 'src/api/singer'
-import { ERR_OK } from 'api/config'
-import Singer from 'common/js/singer'
-import ListView from 'src/base/listview/listview'
-import {mapMutations} from 'vuex'
-const HOT_NAME = '热门'
-const HOT_SINGER_LEN = 10
+<script type="text/ecmascript-6">
+  import ListView from 'base/listview/listview'
+  import {getSingerList} from 'api/singer'
+  import {ERR_OK} from 'api/config'
+  import Singer from 'common/js/singer'
+  import {mapMutations} from 'vuex'
+  import {playlistMixin} from 'common/js/mixin'
 
-export default {
-  data() {
-    return {
-      singers: []
-    }
-  },
-  created() {
-    this._getSingerList()
-  },
-  methods: {
-    //跳转到歌手详情页
-    selectSinger(singer) {
-      this.$router.push({
-        path: `/singer/${singer.id}`
-      })
-      this.setSinger(singer)
+  const HOT_SINGER_LEN = 10
+  const HOT_NAME = '热门'
+
+  export default {
+    mixins: [playlistMixin],
+    data() {
+      return {
+        singers: []
+      }
     },
-    //获取歌手列表数据
-    _getSingerList() {
-      getSingerList().then((res) => {
-        if (res.code === ERR_OK) {
-          this.singers = this._normalizeSinger(res.data.list)
-          console.log("歌手", this.singers)
-        }
-      })
+    created() {
+      this._getSingerList()
     },
-    //格式化歌手列表数据
-    _normalizeSinger(list) {
+    methods: {
+      handlePlaylist(playlist) {
+        const bottom = playlist.length > 0 ? '60px' : ''
+        this.$refs.singer.style.bottom = bottom
+        this.$refs.list.refresh()
+      },
+      selectSinger(singer) {
+        this.$router.push({
+          path: `/singer/${singer.id}`
+        })
+        this.setSinger(singer)
+      },
+      _getSingerList() {
+        getSingerList().then((res) => {
+          if (res.code === ERR_OK) {
+            this.singers = this._normalizeSinger(res.data.list)
+          }
+        })
+      },
+      _normalizeSinger(list) {
         let map = {
-            hot: {
-                title: HOT_NAME,
-                items: []
-            }
+          hot: {
+            title: HOT_NAME,
+            items: []
+          }
         }
         list.forEach((item, index) => {
-            if (index < HOT_SINGER_LEN) {
-                map.hot.items.push(new Singer({
-                    name: item.Fsinger_name,
-                    id: item.Fsinger_mid
-                }))
-            }
-            const key = item.Findex
-            if (!map[key]) {
-                map[key] = {
-                    title: key,
-                    items: []
-                }
-            }
-            map[key].items.push(new Singer({
-                name: item.Fsinger_name,
-                id: item.Fsinger_mid
+          if (index < HOT_SINGER_LEN) {
+            map.hot.items.push(new Singer({
+              name: item.Fsinger_name,
+              id: item.Fsinger_mid
             }))
+          }
+          const key = item.Findex
+          if (!map[key]) {
+            map[key] = {
+              title: key,
+              items: []
+            }
+          }
+          map[key].items.push(new Singer({
+            name: item.Fsinger_name,
+            id: item.Fsinger_mid
+          }))
         })
-
-        //为了得到有序列表，我们需要处理map
+        // 为了得到有序列表，我们需要处理 map
         let ret = []
         let hot = []
         for (let key in map) {
-            let val = map[key]
-            if (val.title.match(/[a-zA-z]/)) {
-                ret.push(val)
-            }else if (val.title === HOT_NAME) {
-                hot.push(val)
-            }
+          let val = map[key]
+          if (val.title.match(/[a-zA-Z]/)) {
+            ret.push(val)
+          } else if (val.title === HOT_NAME) {
+            hot.push(val)
+          }
         }
-        ret.sort((a,b) => {
-            return a.title.charCodeAt(0) - b.title.charCodeAt(0)
+        ret.sort((a, b) => {
+          return a.title.charCodeAt(0) - b.title.charCodeAt(0)
         })
         return hot.concat(ret)
+      },
+      ...mapMutations({
+        setSinger: 'SET_SINGER'
+      })
     },
-    ...mapMutations({
-      setSinger: 'SET_SINGER'
-    })
-  },
-  components: {
-    ListView
+    components: {
+      ListView
+    }
   }
-}
+
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

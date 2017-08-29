@@ -33,7 +33,7 @@
   </scroll>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
   import {getData} from 'common/js/dom'
@@ -75,14 +75,12 @@
       this.listHeight = []
     },
     methods: {
-      //选中一个歌手
       selectItem(item) {
         this.$emit('select', item)
       },
       onShortcutTouchStart(e) {
         let anchorIndex = getData(e.target, 'index')
         let firstTouch = e.touches[0]
-        console.log(e.touches)
         this.touch.y1 = firstTouch.pageY
         this.touch.anchorIndex = anchorIndex
 
@@ -123,8 +121,7 @@
           index = this.listHeight.length - 2
         }
         this.scrollY = -this.listHeight[index]
-        console.log(this.$refs.listview)
-        this.$refs.listview.scrollToElement(this.$refs.listGroup[index],0)
+        this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
       }
     },
     watch: {

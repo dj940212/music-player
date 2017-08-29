@@ -32,7 +32,7 @@
               <div class="playing-lyric">{{playingLyric}}</div>
             </div>
           </div>
-          <!-- <scroll class="middle-r" ref="lyricList" :data="currentLyric && currentLyric.lines">
+          <scroll class="middle-r" ref="lyricList" :data="currentLyric && currentLyric.lines">
             <div class="lyric-wrapper">
               <div v-if="currentLyric">
                 <p ref="lyricLine"
@@ -41,7 +41,7 @@
                    v-for="(line,index) in currentLyric.lines">{{line.txt}}</p>
               </div>
             </div>
-          </scroll> -->
+          </scroll>
         </div>
         <div class="bottom">
           <div class="dot-wrapper">
@@ -99,7 +99,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
@@ -107,7 +107,7 @@
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   import {shuffle} from 'common/js/util'
-  // import Lyric from 'lyric-parser'
+  import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
 
   const transform = prefixStyle('transform')
@@ -306,18 +306,18 @@
         })
         this.setCurrentIndex(index)
       },
-      // getLyric() {
-      //   this.currentSong.getLyric().then((lyric) => {
-      //     this.currentLyric = new Lyric(lyric, this.handleLyric)
-      //     if (this.playing) {
-      //       this.currentLyric.play()
-      //     }
-      //   }).catch(() => {
-      //     this.currentLyric = null
-      //     this.playingLyric = ''
-      //     this.currentLineNum = 0
-      //   })
-      // },
+      getLyric() {
+        this.currentSong.getLyric().then((lyric) => {
+          this.currentLyric = new Lyric(lyric, this.handleLyric)
+          if (this.playing) {
+            this.currentLyric.play()
+          }
+        }).catch(() => {
+          this.currentLyric = null
+          this.playingLyric = ''
+          this.currentLineNum = 0
+        })
+      },
       handleLyric({lineNum, txt}) {
         this.currentLineNum = lineNum
         if (lineNum > 5) {
@@ -330,8 +330,6 @@
       },
       middleTouchStart(e) {
         this.touch.initiated = true
-        // 用来判断是否是一次移动
-        this.touch.moved = false
         const touch = e.touches[0]
         this.touch.startX = touch.pageX
         this.touch.startY = touch.pageY
@@ -346,9 +344,6 @@
         if (Math.abs(deltaY) > Math.abs(deltaX)) {
           return
         }
-        if (!this.touch.moved) {
-          this.touch.moved = true
-        }
         const left = this.currentShow === 'cd' ? 0 : -window.innerWidth
         const offsetWidth = Math.min(0, Math.max(-window.innerWidth, left + deltaX))
         this.touch.percent = Math.abs(offsetWidth / window.innerWidth)
@@ -358,9 +353,6 @@
         this.$refs.middleL.style[transitionDuration] = 0
       },
       middleTouchEnd() {
-        if (!this.touch.moved) {
-          return
-        }
         let offsetWidth
         let opacity
         if (this.currentShow === 'cd') {
@@ -433,7 +425,7 @@
         }
         setTimeout(() => {
           this.$refs.audio.play()
-          // this.getLyric()
+          this.getLyric()
         }, 1000)
       },
       playing(newPlaying) {

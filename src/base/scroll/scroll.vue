@@ -1,10 +1,10 @@
 <template>
   <div ref="wrapper">
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
 
   export default {
@@ -17,11 +17,19 @@
         type: Boolean,
         default: true
       },
+      listenScroll: {
+        type: Boolean,
+        default: false
+      },
       data: {
         type: Array,
         default: null
       },
-      listenScroll: {
+      pullup: {
+        type: Boolean,
+        default: false
+      },
+      beforeScroll: {
         type: Boolean,
         default: false
       }
@@ -43,8 +51,22 @@
 
         if (this.listenScroll) {
           let me = this
-          this.scroll.on('scroll',(pos) => {
+          this.scroll.on('scroll', (pos) => {
             me.$emit('scroll', pos)
+          })
+        }
+
+        if (this.pullup) {
+          this.scroll.on('scrollEnd', () => {
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+              this.$emit('scrollToEnd')
+            }
+          })
+        }
+
+        if (this.beforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
           })
         }
       },
