@@ -1,50 +1,37 @@
-# vue-music
+# music-player
 
->   移动端音乐播放器
+>   移动端音乐播放器,整合网易云音乐与QQ音乐,避免听歌时来回切换音乐播放器的窘境
 
-预览：http://huxiaofei.me/vue-music
-![](http://oupfkjs5r.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170815104100.jpg)
+[点此预览](http://music.dingjian.name)
+
+## 功能预览
+
+![](http://image.dingjian.name/blog/170920/D2k8m615G6.jpg?imageslim)
+
 
 ## 运行项目
 
 ``` bash
+# 克隆到本地
+git clone 
+
 # 安装项目依赖
 npm install
 
-# 在localhost:8080 运行
+# 运行
 npm run dev
 
-# 构建
+# 打包构建
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
 
-## 项目依赖
+## 预计实现功能
 
-+ `fastclick` 消除移动浏览器发生轻敲和点击之间的300毫秒延迟
-```javascript
-main.js
-import fastclick from fastclick
-fastclick.attach(document.body);
-```
-
-+ `vue-lazyload` vue图片懒加载组件
-```javascript
-main.js
-import VueLazyLoad from 'vue-lazyload'
-Vue.use(VueLazyLoad,{
-    loading: require('common/image/default.png')
-})
-```
-
-```html
-*.vue
-<img v-lazy="item.imgurl">
-```
-
-+ `better-scroll` 实现滚动列表，轮播图
-
-+ `create-keyframe-animation` 帧动画库
+- [x] 推荐歌单列表
+- [x] 歌手列表
+- [x] 热门歌曲排行列表
+- [x] 歌曲收藏列表
+- [x] 播放器(播放模式,歌词,旋转唱片)
+- [ ] 搜索(整合网易云,与QQ曲库)
+- [ ] 用户注册
