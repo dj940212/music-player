@@ -85,7 +85,7 @@
   .rank
     position: fixed
     width: 100%
-    top: 88px
+    top: 44px
     bottom: 0
     .toplist
       height: 100%
@@ -110,7 +110,7 @@
           height: 100px
           overflow: hidden
           background: $color-highlight-background
-          color: $color-text-d
+          color: $color-text-name
           font-size: $font-size-small
           .song
             no-wrap()

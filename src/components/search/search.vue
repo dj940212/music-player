@@ -4,7 +4,7 @@
       <search-box ref="searchBox" @query="onQueryChange"></search-box>
     </div>
     <div ref="shortcutWrapper" class="shortcut-wrapper" v-show="!query">
-      <scroll :refreshDelay="refreshDelay" ref="shortcut" class="shortcut" :data="shortcut">
+      <scroll ref="shortcut" class="shortcut" :data="shortcut">
         <div>
           <div class="hot-key">
             <h1 class="title">热门搜索</h1>
@@ -42,20 +42,24 @@
   import Suggest from 'components/suggest/suggest'
   import {getHotKey} from 'api/search'
   import {ERR_OK} from 'api/config'
-  import {playlistMixin, searchMixin} from 'common/js/mixin'
-  import {mapActions} from 'vuex'
+  import {playlistMixin} from 'common/js/mixin'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
-    mixins: [playlistMixin, searchMixin],
+    mixins: [playlistMixin],
     data() {
       return {
-        hotKey: []
+        hotKey: [],
+        query: ''
       }
     },
     computed: {
       shortcut() {
         return this.hotKey.concat(this.searchHistory)
-      }
+      },
+      ...mapGetters([
+        'searchHistory'
+      ])
     },
     created() {
       this._getHotKey()
@@ -70,6 +74,18 @@
         this.$refs.shortcutWrapper.style.bottom = bottom
         this.$refs.shortcut.refresh()
       },
+      onQueryChange(query) {
+        this.query = query
+      },
+      saveSearch() {
+        this.saveSearchHistory(this.query)
+      },
+      blurInput() {
+        this.$refs.searchBox.blur()
+      },
+      addQuery(query) {
+        this.$refs.searchBox.setQuery(query)
+      },
       showConfirm() {
         this.$refs.confirm.show()
       },
@@ -81,6 +97,8 @@
         })
       },
       ...mapActions([
+        'saveSearchHistory',
+        'deleteSearchHistory',
         'clearSearchHistory'
       ])
     },
@@ -112,7 +130,7 @@
       margin: 20px
     .shortcut-wrapper
       position: fixed
-      top: 178px
+      top: 134px
       bottom: 0
       width: 100%
       .shortcut
@@ -123,7 +141,7 @@
           .title
             margin-bottom: 20px
             font-size: $font-size-medium
-            color: $color-text-l
+            color: $color-text-name
           .item
             display: inline-block
             padding: 5px 10px
@@ -131,7 +149,7 @@
             border-radius: 6px
             background: $color-highlight-background
             font-size: $font-size-medium
-            color: $color-text-d
+            color: $color-text-desc
         .search-history
           position: relative
           margin: 0 20px
@@ -147,10 +165,10 @@
               extend-click()
               .icon-clear
                 font-size: $font-size-medium
-                color: $color-text-d
+                color: $color-text-desc
     .search-result
       position: fixed
       width: 100%
-      top: 178px
+      top: 128px
       bottom: 0
 </style>

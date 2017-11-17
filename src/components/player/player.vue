@@ -667,11 +667,11 @@
           margin-bottom: 2px
           no-wrap()
           font-size: $font-size-medium
-          color: $color-text
+          color: $color-text-name
         .desc
           no-wrap()
           font-size: $font-size-small
-          color: $color-text-d
+          color: $color-text-desc
       .control
         flex: 0 0 30px
         width: 30px

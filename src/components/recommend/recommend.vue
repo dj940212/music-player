@@ -107,7 +107,7 @@
   .recommend
     position: fixed
     width: 100%
-    top: 88px
+    top: 44px
     bottom: 0
     .recommend-content
       height: 100%
@@ -117,21 +117,25 @@
         width: 100%
         overflow: hidden
       .recommend-list
+        background: $color-recommend-background
         .list-title
-          height: 65px
-          line-height: 65px
+          height: 40px
+          line-height: 40px
           text-align: center
           font-size: $font-size-medium
-          color: $color-theme
+          color: $color-main
+          background: $color-recommend-title-background
         .item
+          background: $color-recommend-item-bacnground
           display: flex
           box-sizing: border-box
           align-items: center
-          padding: 0 20px 20px 20px
+          margin: 10px 0px 10px 0px
+          padding-left: 20px
           .icon
             flex: 0 0 60px
             width: 60px
-            padding-right: 20px
+            padding: 10px 20px 10px 0;
           .text
             display: flex
             flex-direction: column
@@ -142,9 +146,9 @@
             font-size: $font-size-medium
             .name
               margin-bottom: 10px
-              color: $color-text
+              color: $color-recommend-name
             .desc
-              color: $color-text-d
+              color: $color-recommend-desc
       .loading-container
         position: absolute
         width: 100%
