@@ -85,7 +85,7 @@
   .rank
     position: fixed
     width: 100%
-    top: 44px
+    top: 50px
     bottom: 0
     .toplist
       height: 100%

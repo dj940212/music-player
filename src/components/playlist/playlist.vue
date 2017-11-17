@@ -168,16 +168,16 @@
           .icon
             margin-right: 10px
             font-size: 30px
-            color: $color-theme-d
+            color: $color-main
           .text
             flex: 1
             font-size: $font-size-medium
-            color: $color-text-l
+            color: $color-text-name
           .clear
             extend-click()
             .icon-clear
               font-size: $font-size-medium
-              color: $color-text-d
+              color: $color-text-desc
       .list-content
         max-height: 240px
         overflow: hidden
@@ -195,23 +195,23 @@
             flex: 0 0 20px
             width: 20px
             font-size: $font-size-small
-            color: $color-theme-d
+            color: $color-main
           .text
             flex: 1
             no-wrap()
             font-size: $font-size-medium
-            color: $color-text-d
+            color: $color-text-desc
           .like
             extend-click()
             margin-right: 15px
             font-size: $font-size-small
-            color: $color-theme
+            color: $color-main
             .icon-favorite
               color: $color-sub-theme
           .delete
             extend-click()
             font-size: $font-size-small
-            color: $color-theme
+            color: $color-main
       .list-operate
         width: 140px
         margin: 20px auto 30px auto
@@ -221,7 +221,7 @@
           padding: 8px 16px
           border: 1px solid $color-text-l
           border-radius: 100px
-          color: $color-text-l
+          color: $color-text-desc
           .icon-add
             margin-right: 5px
             font-size: $font-size-small-s
@@ -232,5 +232,5 @@
         line-height: 50px
         background: $color-background
         font-size: $font-size-medium-x
-        color: $color-text-l
+        color: $color-text-desc
 </style>

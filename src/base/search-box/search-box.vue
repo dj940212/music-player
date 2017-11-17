@@ -52,19 +52,22 @@
     height: 40px
     background: $color-highlight-background
     border-radius: 6px
+    color: $color-text-desc
     .icon-search
       font-size: 24px
-      color: $color-background
+      color: $color-text-desc
     .box
       flex: 1
       margin: 0 5px
       line-height: 18px
       background: $color-highlight-background
-      color: $color-text
+      color: $color-text-desc
       font-size: $font-size-medium
       &::placeholder
-        color: $color-text-d
+        color: $color-text-desc
+      &:focus
+        outline: none
     .icon-dismiss
       font-size: 16px
-      color: $color-background
+      color: $color-text-desc
 </style>

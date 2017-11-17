@@ -42,8 +42,8 @@
       padding: 8px
       text-align: center
       font-size: $font-size-medium
-      color: $color-text-d
+      color: $color-text-desc
       &.active
         background: $color-highlight-background
-        color: $color-text
+        color: $color-text-name
 </style>

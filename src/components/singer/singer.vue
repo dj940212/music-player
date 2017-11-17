@@ -101,7 +101,7 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .singer
     position: fixed
-    top: 44px
+    top: 50px
     bottom: 0
     width: 100%
 </style>

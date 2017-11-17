@@ -484,7 +484,7 @@
             display: block
             padding: 9px
             font-size: $font-size-large-x
-            color: $color-theme
+            color: $color-main
             transform: rotate(-90deg)
         .title
           width: 70%

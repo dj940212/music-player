@@ -139,7 +139,7 @@
         display: block
         padding: 10px
         font-size: $font-size-large-x
-        color: $color-theme
+        color: $color-main
     .switches-wrapper
       margin: 10px 0 30px 0
     .play-btn
@@ -148,8 +148,8 @@
       padding: 7px 0
       margin: 0 auto
       text-align: center
-      border: 1px solid  $color-text-l
-      color: $color-text-l
+      border: 1px solid  $color-text-desc
+      color: $color-text-desc
       border-radius: 100px
       font-size: 0
       .icon-play
