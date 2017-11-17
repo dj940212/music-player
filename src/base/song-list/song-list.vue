@@ -85,9 +85,9 @@
         overflow: hidden
         .name
           no-wrap()
-          color: $color-text-name
+          color: $color-text
         .desc
           no-wrap()
           margin-top: 4px
-          color: $color-text-desc
+          color: $color-text-d
 </style>

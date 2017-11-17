@@ -55,7 +55,15 @@
         this.slider.refresh()
       })
     },
-    destroyed() {
+    activated() {
+      if (this.autoPlay) {
+        this._play()
+      }
+    },
+    deactivated() {
+      clearTimeout(this.timer)
+    },
+    beforeDestroy() {
       clearTimeout(this.timer)
     },
     methods: {
@@ -95,8 +103,13 @@
           this.currentPageIndex = pageIndex
 
           if (this.autoPlay) {
-            clearTimeout(this.timer)
             this._play()
+          }
+        })
+
+        this.slider.on('beforeScrollStart', () => {
+          if (this.autoPlay) {
+            clearTimeout(this.timer)
           }
         })
       },

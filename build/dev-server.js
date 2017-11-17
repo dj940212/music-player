@@ -23,7 +23,6 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 
-// ===========绕过限制获取数据=======================
 var apiRoutes = express.Router()
 
 apiRoutes.get('/getDiscList', function (req, res) {
@@ -65,10 +64,7 @@ apiRoutes.get('/lyric', function (req, res) {
   })
 })
 
-app.use('/api',apiRoutes)
-
-
-
+app.use('/api', apiRoutes)
 
 var compiler = webpack(webpackConfig)
 

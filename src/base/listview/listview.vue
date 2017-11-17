@@ -16,11 +16,11 @@
         </uL>
       </li>
     </ul>
-    <div class="list-shortcut" @touchstart="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove">
+    <div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove"
+         @touchend.stop>
       <ul>
         <li v-for="(item, index) in shortcutList" :data-index="index" class="item"
             :class="{'current':currentIndex===index}">{{item}}
-
         </li>
       </ul>
     </div>
@@ -183,7 +183,7 @@
         line-height: 30px
         padding-left: 20px
         font-size: $font-size-small
-        color: $color-text-name
+        color: $color-text-l
         background: $color-highlight-background
       .list-group-item
         display: flex
@@ -195,7 +195,7 @@
           border-radius: 50%
         .name
           margin-left: 20px
-          color: $color-text-name
+          color: $color-text-l
           font-size: $font-size-medium
     .list-shortcut
       position: absolute
@@ -226,7 +226,7 @@
         line-height: 30px
         padding-left: 20px
         font-size: $font-size-small
-        color: $color-text-name
+        color: $color-text-l
         background: $color-highlight-background
     .loading-container
       position: absolute

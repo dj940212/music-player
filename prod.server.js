@@ -1,18 +1,14 @@
-var express = require('express');
+var express = require('express')
+var config = require('./config/index')
 var axios = require('axios')
 
-var port = 8083; //process.env.PORT || config.build.port;
+var port = process.env.PORT || config.build.port
 
-var app = express();
+var app = express()
 
-var router = express.Router();
+var apiRoutes = express.Router()
 
-router.get('/', function (req, res, next) {
-	req.url = '/index.html';
-	next();
-})
-
-router.get('/api/getDiscList', function (req, res) {
+apiRoutes.get('/getDiscList', function (req, res) {
   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
   axios.get(url, {
     headers: {
@@ -27,7 +23,7 @@ router.get('/api/getDiscList', function (req, res) {
   })
 })
 
-router.get('/api/lyric', function (req, res) {
+apiRoutes.get('/lyric', function (req, res) {
   var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
 
   axios.get(url, {
@@ -51,14 +47,14 @@ router.get('/api/lyric', function (req, res) {
   })
 })
 
-app.use(router);
+app.use('/api', apiRoutes)
 
-app.use(express.static('./dist'));
+app.use(express.static('./dist'))
 
 module.exports = app.listen(port, function (err) {
-	if (err) {
-		console.log(err);
-		return
-	}
-	console.log('Listening at http://localhost:' + port + '\n')
-});
+  if (err) {
+    console.log(err)
+    return
+  }
+  console.log('Listening at http://localhost:' + port + '\n')
+})
