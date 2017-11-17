@@ -130,7 +130,7 @@
       margin: 20px
     .shortcut-wrapper
       position: fixed
-      top: 178px
+      top: 134px
       bottom: 0
       width: 100%
       .shortcut
@@ -141,7 +141,7 @@
           .title
             margin-bottom: 20px
             font-size: $font-size-medium
-            color: $color-text-l
+            color: $color-text-name
           .item
             display: inline-block
             padding: 5px 10px
@@ -149,7 +149,7 @@
             border-radius: 6px
             background: $color-highlight-background
             font-size: $font-size-medium
-            color: $color-text-d
+            color: $color-text-desc
         .search-history
           position: relative
           margin: 0 20px
@@ -165,10 +165,10 @@
               extend-click()
               .icon-clear
                 font-size: $font-size-medium
-                color: $color-text-d
+                color: $color-text-desc
     .search-result
       position: fixed
       width: 100%
-      top: 178px
+      top: 128px
       bottom: 0
 </style>

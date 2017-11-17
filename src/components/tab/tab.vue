@@ -1,5 +1,8 @@
 <template>
   <div class="tab">
+    <router-link tag="div" class="tab-item" to="/search">
+        <span class="tab-link">搜索</span>
+    </router-link>
     <router-link tag="div" class="tab-item" to="/recommend">
       <span class="tab-link">推荐</span>
     </router-link>
@@ -10,14 +13,15 @@
       <span class="tab-link">排行
       </span>
     </router-link>
-    <router-link tag="div" class="tab-item" to="/search">
-      <span class="tab-link">搜索</span>
+    <router-link tag="div" class="tab-item" to="/recommend">
+      <span class="tab-link">我的</span>
     </router-link>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  export default {}
+  export default {
+  }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
@@ -27,6 +31,7 @@
     height: 44px
     line-height: 44px
     font-size: $font-size-medium
+    background: $color-tab-background
     .tab-item
       flex: 1
       text-align: center
@@ -35,6 +40,6 @@
         color: $color-text-l
       &.router-link-active
         .tab-link
-          color: $color-theme
-          border-bottom: 2px solid $color-theme
+          color: $color-tab-active
+          border-bottom: 2px solid $color-tab-active
 </style>

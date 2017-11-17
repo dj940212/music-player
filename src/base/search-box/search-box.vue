@@ -54,17 +54,19 @@
     border-radius: 6px
     .icon-search
       font-size: 24px
-      color: $color-background
+      color: $color-text-desc
     .box
       flex: 1
       margin: 0 5px
       line-height: 18px
       background: $color-highlight-background
-      color: $color-text
+      color: $color-text-name
       font-size: $font-size-medium
+      &:focus
+        outline: none
       &::placeholder
-        color: $color-text-d
+        color: $color-text-desc
     .icon-dismiss
       font-size: 16px
-      color: $color-background
+      color: $color-text-desc
 </style>
